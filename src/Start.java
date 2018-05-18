@@ -23,6 +23,7 @@ public class Start {
                 }
                 builder.append(line.charAt(i));
             }
+            i++;
             boolean isOkey = false;
             Token token = null;
             for (LolType type : LolType.values()){
@@ -51,7 +52,6 @@ public class Start {
                         elements.add(builder.toString());
                         builder = new StringBuilder();
                     }
-
                 }else {
                     if (line.charAt(i) == '"') {
                         string = false;
@@ -60,6 +60,9 @@ public class Start {
                     }
                     builder.append(line.charAt(i));
                 }
+            }
+            if (!builder.toString().equals("")){
+                elements.add(builder.toString());
             }
             token.addElements(elements);
             tokens.add(token);

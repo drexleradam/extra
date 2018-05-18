@@ -19,8 +19,10 @@ public class JavaCreater {
                 case ADD:
                     builder.append(String.format("\t\tint %s;\n\t\t%s = ",t.getElement(0),t.getElement(0)));
                     for (String s : t.getElementsFrom(1)){
-                        builder.append(String.format("\t\t%s + \n",s));
+                        builder.append(String.format("%s + ",s));
                     }
+                    builder.delete(builder.length()-3,builder.length());
+                    builder.append(";\n");
                     break;
                 default:
                     throw new Exception("Wrong command.");
