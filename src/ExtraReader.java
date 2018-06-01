@@ -3,9 +3,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtraReader {
+class ExtraReader {
 
-    public void doWork() throws Exception {
+    void doWork() throws Exception {
         BufferedReader reader = new BufferedReader(new FileReader("test.lol"));
 
         List<Token> tokens = new ArrayList<>();
@@ -16,7 +16,7 @@ public class ExtraReader {
             boolean lineMatch = false;
             for (COMMAND_TYPE c : COMMAND_TYPE.values()) {
                 if (c.getPattern().matcher(line).matches()) {
-                    String tmp[];
+                    String tmp[],num[],variable,valami;
                     lineMatch = true;
                     switch (c) {
                         case PRINT_STRING:
@@ -45,6 +45,28 @@ public class ExtraReader {
                             tmp = new String[1];
                             tmp[0] = line.split(" ")[1];
                             break;
+                        case ADD_INTEGER:
+                            variable = line.substring(4,4+line.split(" ")[1].length());
+                            valami = line.substring(4+variable.length()+1);
+                            num = valami.split("\\+");
+                            tmp = new String[1+num.length];
+                            tmp[0] = variable;
+                            int alma = 0;
+                            for (String s : num){
+                                tmp[++alma] = s.trim();
+                            }
+                            break;
+                        case SUB_INTEGER:
+                            variable = line.substring(4,4+line.split(" ")[1].length());
+                            valami = line.substring(4+variable.length()+1);
+                            num = valami.split("-");
+                            tmp = new String[1+num.length];
+                            tmp[0] = variable;
+                            int blma = 0;
+                            for (String s : num){
+                                tmp[++blma] = s.trim();
+                            }
+                            break;
                         default:
                             tmp = new String[1];
                             break;
@@ -54,7 +76,7 @@ public class ExtraReader {
                 }
             }
             if (!lineMatch) {
-                throw new Exception("Wrong command ( " + line.split(" ")[0] + " ) on line " + lineNumber);
+                throw new Exception("Wrong syntax on line " + lineNumber);
             }
         }
 

@@ -13,3 +13,7 @@ int kecske
 pri akarmi
 
 pri " valami asd"
+
+add kecske 0    +3
+
+sub kecske 3 -7

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.List;
 
-public class JavaCreater {
+class JavaCreater {
 
     static boolean createOutput(String fileName, List<Token> tokens) throws Exception {
 
@@ -12,6 +12,7 @@ public class JavaCreater {
         builder.append(String.format("public class %s {\n\n\tpublic static void main(String[] args) {\n\n", className[0]));
 
         for (Token t : tokens) {
+            String appending;
             switch (t.getType()) {
                 case EMPTY_LINE:
                     builder.append("\n");
@@ -39,6 +40,28 @@ public class JavaCreater {
                     break;
                 case DEFAULT_INTEGER_VARIABLE:
                     builder.append(String.format("\t\tint %s = 0;\n", t.getElements()[0]));
+                    break;
+                case ADD_INTEGER:
+                    builder.append(String.format("\t\t%s =", t.getElements()[0]));
+                    appending = " ";
+                    for (String s : t.getElements()){
+                        if (!s.equals(t.getElements()[0])){
+                            builder.append(appending).append(s);
+                            appending = " + ";
+                        }
+                    }
+                    builder.append(";\n");
+                    break;
+                case SUB_INTEGER:
+                    builder.append(String.format("\t\t%s =", t.getElements()[0]));
+                    appending = " ";
+                    for (String s : t.getElements()){
+                        if (!s.equals(t.getElements()[0])){
+                            builder.append(appending).append(s);
+                            appending = " - ";
+                        }
+                    }
+                    builder.append(";\n");
                     break;
                 default:
                     throw new Exception("Wrong command.");
