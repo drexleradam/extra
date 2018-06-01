@@ -16,7 +16,7 @@ class ExtraReader {
             boolean lineMatch = false;
             for (COMMAND_TYPE c : COMMAND_TYPE.values()) {
                 if (c.getPattern().matcher(line).matches()) {
-                    String tmp[],num[],variable,valami;
+                    String tmp[], num[], variable, valami;
                     lineMatch = true;
                     switch (c) {
                         case PRINT_STRING:
@@ -39,33 +39,39 @@ class ExtraReader {
                         case STRING_VARIABLE:
                             tmp = new String[2];
                             tmp[0] = line.split(" ")[1];
-                            tmp[1] = line.split(" ")[2];
+                            tmp[1] = line.substring(4+tmp[0].length());
                             break;
                         case DEFAULT_STRING_VARIABLE:
                             tmp = new String[1];
                             tmp[0] = line.split(" ")[1];
                             break;
                         case ADD_INTEGER:
-                            variable = line.substring(4,4+line.split(" ")[1].length());
-                            valami = line.substring(4+variable.length()+1);
+                            variable = line.substring(4, 4 + line.split(" ")[1].length());
+                            valami = line.substring(4 + variable.length() + 1);
                             num = valami.split("\\+");
-                            tmp = new String[1+num.length];
+                            tmp = new String[1 + num.length];
                             tmp[0] = variable;
                             int alma = 0;
-                            for (String s : num){
+                            for (String s : num) {
                                 tmp[++alma] = s.trim();
                             }
                             break;
                         case SUB_INTEGER:
-                            variable = line.substring(4,4+line.split(" ")[1].length());
-                            valami = line.substring(4+variable.length()+1);
+                            variable = line.substring(4, 4 + line.split(" ")[1].length());
+                            valami = line.substring(4 + variable.length() + 1);
                             num = valami.split("-");
-                            tmp = new String[1+num.length];
+                            tmp = new String[1 + num.length];
                             tmp[0] = variable;
                             int blma = 0;
-                            for (String s : num){
+                            for (String s : num) {
                                 tmp[++blma] = s.trim();
                             }
+                            break;
+                        case FOR_LOOP_START:
+                            tmp = new String[3];
+                            tmp[0] = line.split(" ")[1];
+                            tmp[1] = line.split(" ")[2];
+                            tmp[2] = line.split(" ")[4];
                             break;
                         default:
                             tmp = new String[1];

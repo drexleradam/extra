@@ -10,7 +10,9 @@ public enum COMMAND_TYPE {
     INTEGER_VARIABLE("int [a-zA-Z][a-zA-Z0-9]* [0-9]+[ ]*"),
     DEFAULT_INTEGER_VARIABLE("int [a-zA-Z][a-zA-Z0-9]*[ ]*"),
     ADD_INTEGER("add [a-zA-Z][a-zA-Z0-9]* [0-9]+[ ]*\\+[ ]*[0-9]+[ ]*"),
-    SUB_INTEGER("sub [a-zA-Z][a-zA-Z0-9]* [0-9]+[ ]*-[ ]*[0-9]+[ ]*");
+    SUB_INTEGER("sub [a-zA-Z][a-zA-Z0-9]* [0-9]+[ ]*-[ ]*[0-9]+[ ]*"),
+    FOR_LOOP_START("for [a-zA-Z][a-zA-Z0-9]* [0-9]+ to [0-9]+[ ]*"),
+    FOR_LOOP_END("for end[ ]*");
 
     private final Pattern pattern;
 

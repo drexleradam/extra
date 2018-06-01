@@ -10,7 +10,9 @@ pri verem
 str akarmi asdt013241q oiuashdmn
 int kecske
 
+for kecske 5 to 9
 pri akarmi
+for end
 
 pri " valami asd"
 
