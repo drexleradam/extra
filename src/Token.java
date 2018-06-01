@@ -1,46 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Token {
 
-    private LolType type;
-    private String varName;
-    private List<String> elements;
+    private COMMAND_TYPE type;
+    private String elements[];
 
-    public Token(LolType type) {
+    public Token(COMMAND_TYPE type, String elements[]) {
         this.type = type;
-        this.elements = new ArrayList<>();
-    }
-
-    public void addElement(String string) {
-        this.elements.add(string);
-    }
-
-    public void addElements(List<String > elements){
         this.elements = elements;
     }
 
-    public String getElement(int index){
-        return elements.get(index);
-    }
-
-    public String getVarName() {
-        return varName;
-    }
-
-    public void setVarName(String varName) {
-        this.varName = varName;
-    }
-
-    public LolType getType() {
-        return type;
-    }
-
-    public List<String> getElements() {
+    public String[] getElements() {
         return elements;
     }
 
-    public List<String > getElementsFrom(int index){
-        return elements.subList(index,elements.size());
+    public COMMAND_TYPE getType() {
+        return type;
     }
+
 }
