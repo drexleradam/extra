@@ -82,7 +82,7 @@ class JavaCreater {
 
         builder.append("\n\t}\n\n}");
 
-        File file = new File(fileName);
+        File file = new File("src/"+fileName);
         FileOutputStream fos = new FileOutputStream(file);
         OutputStreamWriter osw = new OutputStreamWriter(fos);
         Writer w = new BufferedWriter(osw);

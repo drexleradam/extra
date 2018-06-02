@@ -87,7 +87,7 @@ class ExtraReader {
         }
 
         try {
-            if (JavaCreater.createOutput("output.java", tokens)) {
+            if (JavaCreater.createOutput("Output.java", tokens)) {
                 System.out.println("Done!");
             }
         } catch (Exception e) {
